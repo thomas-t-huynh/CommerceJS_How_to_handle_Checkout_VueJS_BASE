@@ -8,9 +8,10 @@
       @updateItemQuantity="updateItemQuantity"
       @removeItem="removeItem"
     />
-    <div>
-      <hr>
-      <h3 class="subtotal">Cart Subtotal: $ {{ cartTotal }}</h3>
+    <hr>  
+    <div class="cartPage-subTotal-div">
+      <button class="btn btn-primary">🔒 Secure Checkout</button>
+      <h3 class="cartPage-subTotal-amount">Cart Subtotal: $ {{ cartTotal }}</h3>
     </div>
   </div>
 </template>
@@ -51,8 +52,27 @@ export default {
 </script>
 
 <style scoped>
-.subtotal {
-  text-align: right;
+
+.cartPage-subTotal-amount {
+  margin: 10px 0;
 }
+
+.cartPage-subTotal-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+  .cartPage-subTotal-div {
+    flex-direction: column;
+    margin-left: 20px;
+  }
+}
+
+button {
+  width: 175px;
+}
+
 </style>
 

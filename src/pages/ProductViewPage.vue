@@ -9,7 +9,7 @@
       <div class="product-info">
         <h3>{{ productInView.name }}</h3>
         <h4>{{productInView.price.formatted_with_symbol}}</h4>
-        <button @click="addProductToCart" class="add-to-cart-button">Add to cart</button>
+        <button @click="addProductToCart" class="btn btn-primary">Add to cart</button>
         <p>{{ status }}</p>
       </div>
     </div>
@@ -49,12 +49,6 @@ img {
 
 .product-info p {
   margin-top: 10px;
-}
-.add-to-cart-button {
-  background: dodgerblue;
-  border: none;
-  color: white;
-  padding: 10px 20px;
 }
 </style>
 
