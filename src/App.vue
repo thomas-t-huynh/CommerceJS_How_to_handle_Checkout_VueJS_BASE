@@ -5,9 +5,12 @@
       <router-view
         :products="products"
         @viewProduct="handleViewProduct"
+
         :productInView="productInView"
         :status="status"
+        @removeStatus="handleRemoveStatus"
         @addProductToCart="handleAddProductToCart"
+
         :cart="cart"
         @updateItemQuantity="handleUpdateItemQuantity"
         @removeItem="handleRemoveItem"
@@ -66,6 +69,9 @@ export default {
           this.cart = res.cart.line_items;
         })
         .catch(err => console.log(err));
+    },
+    handleRemoveStatus() {
+      this.status = undefined
     }
   },
   created() {
