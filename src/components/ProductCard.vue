@@ -28,7 +28,16 @@ export default {
 
 <style scoped>
 div {
-  width: 220px;
+  max-width: 220px;
+  max-height: 300px;
+  margin: 0 20px;
 }
+
+@media (max-width: 700px) {
+  div {
+    margin: 0 auto;
+  }
+}
+
 </style>
 

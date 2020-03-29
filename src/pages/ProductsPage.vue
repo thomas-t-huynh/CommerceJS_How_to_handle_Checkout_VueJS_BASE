@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="productsPage-div">
     <ProductCard
       v-for="product in products"
       :product="product"
@@ -31,5 +31,15 @@ export default {
 </script>
 
 <style scoped>
+.productsPage-div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+  .productsPage-div {
+    display: block;
+  }
+}
 </style>
 

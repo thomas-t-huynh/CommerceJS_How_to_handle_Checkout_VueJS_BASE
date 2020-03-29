@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Tech Pack</a>
             <ul class="nav nav-pills">
                 <li class="nav-item">
                     <router-link class="nav-link" to="/">Home</router-link>
@@ -25,6 +25,10 @@ nav {
     background: black;
 }
 
+.navbar-brand {
+    font-size: 25px;
+    font-family: 'Orbitron', sans-serif;
+}
 a {
     color: white !important;
 }

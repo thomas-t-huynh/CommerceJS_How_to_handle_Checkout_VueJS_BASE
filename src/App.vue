@@ -1,7 +1,7 @@
 <template>
-  <div class="main-container">
+  <div class="app-container">
     <Header/>
-    <div class="container">
+    <div class="main-container">
       <router-view
         :products="products"
         @viewProduct="handleViewProduct"
@@ -95,8 +95,15 @@ export default {
 };
 </script>
 
-<style>
-.main-contaier {
-  overflow-y: scroll;
+<style scoped>
+.main-container {
+  width: 800px;
+  margin: 0 auto;
 }
+@media (max-width: 700px) {
+  .main-container {
+    width: 100%;
+  }
+}
+
 </style>
