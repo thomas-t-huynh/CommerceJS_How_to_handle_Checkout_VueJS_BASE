@@ -1,24 +1,27 @@
 <template>
   <div>
-    <h2>{{ ifEmpty }}</h2>
+    <h2 class="cartPage-empty-h2" v-if="!ifEmpty">Cart is Empty</h2>
     <CartItem
-      v-for="product in cart"
+      v-for="product in cart.line_items"
       :product="product"
       :key="product.id"
       @updateItemQuantity="updateItemQuantity"
       @removeItem="removeItem"
     />
-    <hr>  
+    <hr>
     <div class="cartPage-subTotal-div">
-      <button class="btn btn-primary">🔒 Secure Checkout</button>
-      <h3 class="cartPage-subTotal-amount">Cart Subtotal: $ {{ cartTotal }}</h3>
+      <button v-if="ifEmpty" @click="pushToCheckoutPage" class="btn btn-primary">🔒 Secure Checkout</button>
+
+      <h3
+        class="cartPage-subTotal-amount"
+        v-if="cart.subtotal"
+      >Cart Subtotal: {{ cart.subtotal.formatted_with_symbol }}</h3>
     </div>
   </div>
 </template>
 
 <script>
 import CartItem from "../components/CartItem.vue";
-
 export default {
   name: "CartPage",
   components: {
@@ -26,7 +29,7 @@ export default {
   },
   props: {
     cart: {
-      type: Array
+      type: Object
     }
   },
   methods: {
@@ -35,44 +38,41 @@ export default {
     },
     removeItem(id) {
       this.$emit("removeItem", id);
+    },
+    createCheckoutToken() {
+      this.$emit("createCheckoutToken");
+    },
+    pushToCheckoutPage() {
+      this.$router.push(`/checkout/${this.cart.id}/deliveryform`);
     }
   },
   computed: {
     ifEmpty() {
-      return this.cart.length === 0 ? "Cart is empty" : undefined;
-    },
-    cartTotal() {
-      return this.cart.reduce(
-        (acc, currentEl) => acc + currentEl.quantity * currentEl.price.raw,
-        0
-      );
+      return this.cart.line_items.length > 0 ? true : false;
     }
   }
 };
 </script>
 
 <style scoped>
-
+.cartPage-empty-h2 {
+  margin: 10px 0;
+}
 .cartPage-subTotal-amount {
   margin: 10px 0;
 }
-
 .cartPage-subTotal-div {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
-
 @media (max-width: 700px) {
   .cartPage-subTotal-div {
     flex-direction: column;
     margin-left: 20px;
   }
 }
-
 button {
   width: 175px;
 }
-
 </style>
-
