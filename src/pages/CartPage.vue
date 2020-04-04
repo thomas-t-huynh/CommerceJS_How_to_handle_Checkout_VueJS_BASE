@@ -43,7 +43,7 @@ export default {
       this.$emit("createCheckoutToken");
     },
     pushToCheckoutPage() {
-      this.$router.push(`/checkout/${this.cart.id}/deliveryform`);
+      this.$router.push(`/checkout/${this.cart.id}`);
     }
   },
   computed: {
