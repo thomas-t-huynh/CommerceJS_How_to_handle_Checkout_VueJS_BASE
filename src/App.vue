@@ -34,7 +34,7 @@ export default {
     return {
       products: [],
       productInView: {},
-      cart: [],
+      cart: {},
       status: undefined
     };
   },
