@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="cartPage-empty-h2" v-if="!cart.line_items">Cart is Empty</h2>
+    <h2 class="cartPage-empty-h2" v-if="!hasItems">Cart is Empty</h2>
     <CartItem
       v-for="product in cart.line_items"
       :product="product"
@@ -10,7 +10,7 @@
     />
     <hr>
     <div class="cartPage-subTotal-div">
-      <button v-if="cart.line_items" @click="pushToCheckoutPage" class="btn btn-primary">🔒 Secure Checkout</button>
+      <button v-if="hasItems" @click="pushToCheckoutPage" class="btn btn-primary">🔒 Secure Checkout</button>
 
       <h3
         class="cartPage-subTotal-amount"
@@ -44,6 +44,11 @@ export default {
     },
     pushToCheckoutPage() {
       this.$router.push(`/checkout/${this.cart.id}`);
+    }
+  },
+  computed: {
+    hasItems() {
+      return this.cart.line_items.length > 0 ? true : false
     }
   }
 };
